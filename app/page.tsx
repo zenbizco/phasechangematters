@@ -140,7 +140,7 @@ export default function Home() {
           <CardHeader>
             <CardTitle className="text-2xl">Contact Us</CardTitle>
             <CardDescription>
-              Have questions about BioPCM® solutions? Fill out the form below and we'll get back to you.
+              Have questions about BioPCM® solutions? Fill out the form below and we&apos;ll get back to you.
             </CardDescription>
           </CardHeader>
           <CardContent>
