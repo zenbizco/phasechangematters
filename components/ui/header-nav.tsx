@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import Link from "next/link";
 
 export function HeaderNav() {
   const scrollToSection = (id: string) => {
