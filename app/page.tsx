@@ -97,7 +97,7 @@ export default function Home() {
               <h2 className="text-3xl font-bold mb-4">Why Partner With Crimson Fury</h2>
               <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">
                 Joining our partner network gives you a competitive edge in the rapidly growing sustainable 
-                technology market. As a Crimson Fury partner, you'll benefit from industry-leading margins, 
+                technology market. As a Crimson Fury partner, you&apos;ll benefit from industry-leading margins, 
                 exclusive territory rights, and comprehensive marketing and technical support to accelerate your 
                 business growth.
               </p>
@@ -116,13 +116,13 @@ export default function Home() {
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-6">Our Market-Leading Technology</h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">
-            As a Crimson Fury partner, you'll gain exclusive access to our revolutionary BioPCM® technology, 
+            As a Crimson Fury partner, you&apos;ll gain exclusive access to our revolutionary BioPCM® technology, 
             offering your customers unmatched solutions for temperature control and energy efficiency.
           </p>
           <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">
             BioPCM® technology works across a temperature range from -75°C to 175°C, providing you with 
             opportunities to serve diverse markets including cold chain logistics, buildings, data centers, 
-            and more. Our partners consistently report that BioPCM®'s superior performance and sustainability 
+            and more. Our partners consistently report that BioPCM®&apos;s superior performance and sustainability 
             benefits create strong competitive advantages and higher profit margins.
           </p>
         </div>

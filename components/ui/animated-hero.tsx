@@ -63,7 +63,7 @@ function Hero() {
             </h1>
 
             <p className="text-lg md:text-xl leading-relaxed tracking-tight text-muted-foreground max-w-2xl text-center">
-              Become a strategic partner or reseller for Crimson Fury's revolutionary BioPCM® technology. Unlock exclusive territories, premium margins, and comprehensive support for your business growth.
+              Become a strategic partner or reseller for Crimson Fury&apos;s revolutionary BioPCM® technology. Unlock exclusive territories, premium margins, and comprehensive support for your business growth.
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-3">
