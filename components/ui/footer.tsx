@@ -9,7 +9,7 @@ export function Footer() {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
-  
+
   const currentYear = new Date().getFullYear();
 
   return (
@@ -116,9 +116,21 @@ export function Footer() {
         
         {/* Bottom Footer Section */}
         <div className="flex flex-col md:flex-row justify-between items-center py-4">
-          <p className="text-neutral-500 text-sm mb-4 md:mb-0">
-            © {currentYear} Crimson Fury. All rights reserved.
-          </p>
+          <div className="text-neutral-500 text-sm mb-4 md:mb-0 flex flex-col sm:flex-row items-center gap-2">
+            <p>© {currentYear} Crimson Fury. All rights reserved.</p>
+            <div className="flex items-center">
+              <span className="mx-2 hidden sm:inline">|</span>
+              <span>Powered by</span>
+              <a 
+                href="https://zenbizservices.com/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-red-500 hover:text-red-600 transition-colors ml-1 font-medium"
+              >
+                ZenBiz
+              </a>
+            </div>
+          </div>
           <div className="flex gap-6">
             <button onClick={() => scrollToSection('privacy')} 
               className="text-sm text-neutral-500 hover:text-red-500 transition-colors">
