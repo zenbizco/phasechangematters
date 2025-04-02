@@ -2,8 +2,20 @@
 
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { Menu } from "lucide-react";
+import { useRef } from "react";
 
 export function HeaderNav() {
+  const closeRef = useRef<HTMLButtonElement>(null);
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -11,6 +23,12 @@ export function HeaderNav() {
     } else {
       toast("Section coming soon!");
     }
+  };
+
+  const handleMobileNavClick = (id: string) => {
+    scrollToSection(id);
+    // Close the sheet after navigation
+    closeRef.current?.click();
   };
 
   return (
@@ -32,13 +50,65 @@ export function HeaderNav() {
           Contact
         </Button>
       </nav>
-      <Button 
-        variant="outline" 
-        className="md:hidden"
-        onClick={() => toast("Mobile menu coming soon!")}
-      >
-        Menu
-      </Button>
+      
+      {/* Mobile Menu */}
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button variant="outline" className="md:hidden">
+            <Menu className="h-5 w-5" />
+            <span className="sr-only">Toggle menu</span>
+          </Button>
+        </SheetTrigger>
+        <SheetContent side="right" className="w-[280px]">
+          <SheetHeader>
+            <SheetTitle className="text-left">
+              <div className="flex items-center gap-2 mb-6">
+                <div className="w-6 h-6 rounded-full bg-red-600"></div>
+                <span className="font-bold">Crimson Fury</span>
+              </div>
+            </SheetTitle>
+          </SheetHeader>
+          <div className="flex flex-col gap-4 py-4">
+            <Button 
+              variant="ghost" 
+              className="justify-start" 
+              onClick={() => handleMobileNavClick('home')}
+            >
+              Home
+            </Button>
+            <Button 
+              variant="ghost" 
+              className="justify-start" 
+              onClick={() => handleMobileNavClick('industries')}
+            >
+              Industries
+            </Button>
+            <Button 
+              variant="ghost" 
+              className="justify-start" 
+              onClick={() => handleMobileNavClick('products')}
+            >
+              BioPCM® Technology
+            </Button>
+            <Button 
+              variant="ghost" 
+              className="justify-start" 
+              onClick={() => handleMobileNavClick('about')}
+            >
+              About Us
+            </Button>
+            <Button 
+              variant="ghost" 
+              className="justify-start" 
+              onClick={() => handleMobileNavClick('contact')}
+            >
+              Contact
+            </Button>
+          </div>
+          {/* Hidden close button for programmatic access */}
+          <SheetClose ref={closeRef} className="hidden" />
+        </SheetContent>
+      </Sheet>
     </>
   );
 }
