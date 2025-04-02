@@ -33,9 +33,10 @@ export function ContactForm() {
             <SelectValue placeholder="Select a subject" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="general">General Inquiry</SelectItem>
-            <SelectItem value="support">Technical Support</SelectItem>
-            <SelectItem value="feedback">Feedback</SelectItem>
+            <SelectItem value="quote">Request a Quote</SelectItem>
+            <SelectItem value="information">Product Information</SelectItem>
+            <SelectItem value="technical">Technical Specifications</SelectItem>
+            <SelectItem value="custom">Custom Solution Inquiry</SelectItem>
             <SelectItem value="other">Other</SelectItem>
           </SelectContent>
         </Select>
@@ -47,13 +48,13 @@ export function ContactForm() {
       </div>
       
       <Button 
-        className="w-full bg-red-600 hover:bg-red-700" 
+        className="w-full bg-blue-600 hover:bg-blue-700" 
         onClick={(e) => {
           e.preventDefault();
-          toast.success("Message sent successfully!");
+          toast.success("Your request has been submitted! Our team will contact you shortly.");
         }}
       >
-        Send Message
+        Submit Request
       </Button>
     </form>
   );

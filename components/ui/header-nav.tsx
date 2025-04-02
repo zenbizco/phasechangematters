@@ -34,19 +34,19 @@ export function HeaderNav() {
   return (
     <>
       <nav className="hidden md:flex items-center gap-6">
-        <Button variant="link" onClick={() => scrollToSection('home')}>
+        <Button variant="link" onClick={() => scrollToSection('home')} className="text-black dark:text-white">
           Home
         </Button>
-        <Button variant="link" onClick={() => scrollToSection('industries')}>
+        <Button variant="link" onClick={() => scrollToSection('industries')} className="text-black dark:text-white">
           Industries
         </Button>
-        <Button variant="link" onClick={() => scrollToSection('products')}>
+        <Button variant="link" onClick={() => scrollToSection('products')} className="text-black dark:text-white">
           BioPCM® Technology
         </Button>
-        <Button variant="link" onClick={() => scrollToSection('about')}>
+        <Button variant="link" onClick={() => scrollToSection('about')} className="text-black dark:text-white">
           About Us
         </Button>
-        <Button variant="link" onClick={() => scrollToSection('contact')}>
+        <Button variant="link" onClick={() => scrollToSection('contact')} className="text-black dark:text-white">
           Contact
         </Button>
       </nav>
@@ -63,43 +63,43 @@ export function HeaderNav() {
           <SheetHeader>
             <SheetTitle className="text-left">
               <div className="flex items-center gap-2 mb-6">
-                <div className="w-6 h-6 rounded-full bg-red-600"></div>
-                <span className="font-bold">Crimson Fury</span>
+                <div className="w-6 h-6 rounded-full bg-blue-600"></div>
+                <span className="font-bold">Next Phase Matters</span>
               </div>
             </SheetTitle>
           </SheetHeader>
           <div className="flex flex-col gap-4 py-4">
             <Button 
               variant="ghost" 
-              className="justify-start" 
+              className="justify-start text-black dark:text-white" 
               onClick={() => handleMobileNavClick('home')}
             >
               Home
             </Button>
             <Button 
               variant="ghost" 
-              className="justify-start" 
+              className="justify-start text-black dark:text-white" 
               onClick={() => handleMobileNavClick('industries')}
             >
               Industries
             </Button>
             <Button 
               variant="ghost" 
-              className="justify-start" 
+              className="justify-start text-black dark:text-white" 
               onClick={() => handleMobileNavClick('products')}
             >
               BioPCM® Technology
             </Button>
             <Button 
               variant="ghost" 
-              className="justify-start" 
+              className="justify-start text-black dark:text-white" 
               onClick={() => handleMobileNavClick('about')}
             >
               About Us
             </Button>
             <Button 
               variant="ghost" 
-              className="justify-start" 
+              className="justify-start text-black dark:text-white" 
               onClick={() => handleMobileNavClick('contact')}
             >
               Contact
