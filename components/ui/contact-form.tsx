@@ -1,61 +1,59 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { toast } from "sonner";
+import { useEffect, useRef } from "react";
+import Script from "next/script";
 
 export function ContactForm() {
+  const formContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // This will run after the component mounts
+    if (formContainerRef.current) {
+      // Clear any existing content
+      formContainerRef.current.innerHTML = '';
+
+      // Add the GHL iframe with the exact configuration provided but with wider width
+      const embedCode = `
+        <iframe
+          src="https://api.zenbiz.co/widget/form/yj7USLPw6G6KyQLC9vZx"
+          style="width:100%;height:432px;border:none;border-radius:3px"
+          id="inline-yj7USLPw6G6KyQLC9vZx" 
+          data-layout='{"id":"INLINE"}'
+          data-trigger-type="alwaysShow"
+          data-trigger-value=""
+          data-activation-type="alwaysActivated"
+          data-activation-value=""
+          data-deactivation-type="neverDeactivate"
+          data-deactivation-value=""
+          data-form-name="Form 0"
+          data-height="432"
+          data-layout-iframe-id="inline-yj7USLPw6G6KyQLC9vZx"
+          data-form-id="yj7USLPw6G6KyQLC9vZx"
+          title="Form 0"
+        >
+        </iframe>
+      `;
+
+      // Insert the embed code
+      formContainerRef.current.innerHTML = embedCode;
+    }
+
+    // Cleanup function to handle component unmounting
+    return () => {
+      if (formContainerRef.current) {
+        formContainerRef.current.innerHTML = '';
+      }
+    };
+  }, []);
+
   return (
-    <form className="space-y-4">
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="space-y-2">
-          <label htmlFor="name" className="text-sm font-medium">Name</label>
-          <Input id="name" placeholder="Enter your name" />
-        </div>
-        <div className="space-y-2">
-          <label htmlFor="email" className="text-sm font-medium">Email</label>
-          <Input id="email" type="email" placeholder="Enter your email" />
-        </div>
+    <>
+      <div className="ghl-form-container w-full max-w-full mx-auto px-0" ref={formContainerRef} style={{ minWidth: '100%' }}>
+        {/* The GHL form will be inserted here */}
+        <p className="text-center text-gray-500">Loading form...</p>
       </div>
-      
-      <div className="space-y-2">
-        <label htmlFor="subject" className="text-sm font-medium">Subject</label>
-        <Select>
-          <SelectTrigger>
-            <SelectValue placeholder="Select a subject" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="quote">Request a Quote</SelectItem>
-            <SelectItem value="information">Product Information</SelectItem>
-            <SelectItem value="technical">Technical Specifications</SelectItem>
-            <SelectItem value="custom">Custom Solution Inquiry</SelectItem>
-            <SelectItem value="other">Other</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
-      
-      <div className="space-y-2">
-        <label htmlFor="message" className="text-sm font-medium">Message</label>
-        <Textarea id="message" placeholder="Enter your message" rows={5} />
-      </div>
-      
-      <Button 
-        className="w-full bg-blue-600 hover:bg-blue-700" 
-        onClick={(e) => {
-          e.preventDefault();
-          toast.success("Your request has been submitted! Our team will contact you shortly.");
-        }}
-      >
-        Submit Request
-      </Button>
-    </form>
+      {/* Load the GHL form embed script */}
+      <Script src="https://api.zenbiz.co/js/form_embed.js" strategy="afterInteractive" />
+    </>
   );
 }
