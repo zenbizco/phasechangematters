@@ -1,61 +1,130 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { toast } from "sonner";
+import { useEffect, useRef, useState } from "react";
+import Script from "next/script";
 
+type GHLFormProps = {
+  formId: string;
+  height?: number;
+  formName?: string;
+  className?: string;
+};
+
+/**
+ * GHLForm Component - Client Component
+ * 
+ * Embeds a Go High Level form with proper Next.js integration
+ * Uses the GHL JavaScript API for form embedding
+ */
+export function GHLForm({
+  formId,
+  height = 432,
+  formName = "Form 0",
+  className = "",
+}: GHLFormProps) {
+  const formContainerRef = useRef<HTMLDivElement>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Generate unique ID for the iframe
+  const iframeId = `inline-${formId}`;
+
+  useEffect(() => {
+    // Handle form loading state
+    const handleFormLoaded = () => {
+      setIsLoading(false);
+    };
+
+    // Setup form when component mounts
+    if (formContainerRef.current) {
+      // Clear any existing content
+      formContainerRef.current.innerHTML = '';
+
+      // Create the iframe element with exact GHL configuration from the provided code
+      const embedCode = `
+        <iframe
+          src="https://api.zenbiz.co/widget/form/${formId}"
+          style="width:100%;height:100%;border:none;border-radius:3px"
+          id="${iframeId}" 
+          data-layout="{'id':'INLINE'}"
+          data-trigger-type="alwaysShow"
+          data-trigger-value=""
+          data-activation-type="alwaysActivated"
+          data-activation-value=""
+          data-deactivation-type="neverDeactivate"
+          data-deactivation-value=""
+          data-form-name="${formName}"
+          data-height="${height}"
+          data-layout-iframe-id="${iframeId}"
+          data-form-id="${formId}"
+          title="${formName}"
+        >
+        </iframe>
+      `;
+
+      // Insert the iframe
+      formContainerRef.current.innerHTML = embedCode;
+
+      // Setup event listener for iframe loading
+      const iframe = document.getElementById(iframeId) as HTMLIFrameElement;
+      if (iframe) {
+        iframe.addEventListener('load', handleFormLoaded);
+      }
+    }
+
+    // Cleanup function
+    return () => {
+      const iframe = document.getElementById(iframeId) as HTMLIFrameElement;
+      if (iframe) {
+        iframe.removeEventListener('load', handleFormLoaded);
+      }
+      if (formContainerRef.current) {
+        formContainerRef.current.innerHTML = '';
+      }
+    };
+  }, [formId, height, iframeId, formName]);
+
+  return (
+    <div className={`ghl-form-wrapper relative w-full ${className}`} style={{ height: `${height}px` }}>
+      {isLoading && (
+        <div 
+          id={`${iframeId}-loading`}
+          className="absolute inset-0 flex items-center justify-center bg-white dark:bg-gray-800 bg-opacity-80 dark:bg-opacity-80 z-10"
+        >
+          <div className="text-center">
+            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mb-2"></div>
+            <p className="text-gray-600 dark:text-gray-300">Loading form...</p>
+          </div>
+        </div>
+      )}
+      
+      <div 
+        className="ghl-form-container w-full h-full mx-auto" 
+        ref={formContainerRef} 
+        aria-live="polite"
+        aria-busy={isLoading}
+      />
+      
+      {/* Load the GHL form script */}
+      <Script 
+        src="https://api.zenbiz.co/js/form_embed.js" 
+        strategy="afterInteractive"
+      />
+    </div>
+  );
+}
+
+/**
+ * ContactForm Component - Wrapper with specific configuration
+ * 
+ * This component makes it easy to use the GHL form with your specific configuration
+ */
 export function ContactForm() {
   return (
-    <form className="space-y-4">
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="space-y-2">
-          <label htmlFor="name" className="text-sm font-medium">Name</label>
-          <Input id="name" placeholder="Enter your name" />
-        </div>
-        <div className="space-y-2">
-          <label htmlFor="email" className="text-sm font-medium">Email</label>
-          <Input id="email" type="email" placeholder="Enter your email" />
-        </div>
-      </div>
-      
-      <div className="space-y-2">
-        <label htmlFor="subject" className="text-sm font-medium">Subject</label>
-        <Select>
-          <SelectTrigger>
-            <SelectValue placeholder="Select a subject" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="quote">Request a Quote</SelectItem>
-            <SelectItem value="information">Product Information</SelectItem>
-            <SelectItem value="technical">Technical Specifications</SelectItem>
-            <SelectItem value="custom">Custom Solution Inquiry</SelectItem>
-            <SelectItem value="other">Other</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
-      
-      <div className="space-y-2">
-        <label htmlFor="message" className="text-sm font-medium">Message</label>
-        <Textarea id="message" placeholder="Enter your message" rows={5} />
-      </div>
-      
-      <Button 
-        className="w-full bg-blue-600 hover:bg-blue-700" 
-        onClick={(e) => {
-          e.preventDefault();
-          toast.success("Your request has been submitted! Our team will contact you shortly.");
-        }}
-      >
-        Submit Request
-      </Button>
-    </form>
+    <GHLForm
+      formId="yj7USLPw6G6KyQLC9vZx"
+      formName="Form 0"
+      height={400}
+      className="w-full"
+    />
   );
 }

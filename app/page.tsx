@@ -187,7 +187,7 @@ export default function Home() {
               <div className="flex justify-center mb-4">
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center dark:bg-blue-900/30">
                   <svg className="w-10 h-10 text-blue-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12A2,2 0 0,0 12,10" fill="currentColor" />
+                    <path d="M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,10.5A1.5,1.5 0 0,1 13.5,12A1.5,1.5 0 0,1 12,13.5A1.5,1.5 0 0,1 10.5,12A1.5,1.5 0 0,1 12,10.5" fill="currentColor" />
                   </svg>
                 </div>
               </div>
@@ -223,15 +223,15 @@ export default function Home() {
       </section>
       
       {/* Request Information Form */}
-      <section id="contact" className="py-16 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto">
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-2xl">Request Information or Quote</CardTitle>
-            <CardDescription>
+      <section id="contact" className="py-8 px-4 sm:px-6 lg:px-8 w-full max-w-5xl mx-auto">
+        <Card className="shadow-md">
+          <CardHeader className="text-center pb-2">
+            <CardTitle className="text-xl mb-1">Request Information or Quote</CardTitle>
+            <CardDescription className="text-sm">
               Interested in BioPCM® technology for your application? Fill out the form below to get detailed information or a customized quote.
             </CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="px-4 pt-2 pb-6">
             <ContactForm />
           </CardContent>
         </Card>
