@@ -90,7 +90,7 @@ export function GHLForm({
       <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg border border-gray-200 dark:border-gray-800 overflow-hidden transition-all duration-300 hover:shadow-xl">
         <div className="px-4 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-700 dark:to-indigo-700">
           <h3 className="text-white font-medium text-lg">Get in Touch</h3>
-          <p className="text-white/80 text-sm">We'll get back to you as soon as possible</p>
+          <p className="text-white/80 text-sm">We&apos;ll get back to you as soon as possible</p>
         </div>
         
         <div style={{ height: `${height}px` }} className="relative p-1">
