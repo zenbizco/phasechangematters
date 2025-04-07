@@ -241,7 +241,6 @@ export default function Home() {
       <div id="privacy" style={{ height: '1px', overflow: 'hidden' }}></div>
       <div id="terms" style={{ height: '1px', overflow: 'hidden' }}></div>
 
-      {/* Footer */}
       <Footer />
     </div>
   );

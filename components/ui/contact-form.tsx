@@ -43,7 +43,7 @@ export function GHLForm({
       const embedCode = `
         <iframe
           src="https://api.zenbiz.co/widget/form/${formId}"
-          style="width:100%;height:100%;border:none;border-radius:3px"
+          style="width:100%;height:100%;border:none;border-radius:8px"
           id="${iframeId}" 
           data-layout="{'id':'INLINE'}"
           data-trigger-type="alwaysShow"
@@ -84,25 +84,36 @@ export function GHLForm({
   }, [formId, height, iframeId, formName]);
 
   return (
-    <div className={`ghl-form-wrapper relative w-full ${className}`} style={{ height: `${height}px` }}>
-      {isLoading && (
-        <div 
-          id={`${iframeId}-loading`}
-          className="absolute inset-0 flex items-center justify-center bg-white dark:bg-gray-800 bg-opacity-80 dark:bg-opacity-80 z-10"
-        >
-          <div className="text-center">
-            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mb-2"></div>
-            <p className="text-gray-600 dark:text-gray-300">Loading form...</p>
-          </div>
+    <div className={`ghl-form-wrapper relative ${className}`}>
+      <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg border border-gray-200 dark:border-gray-800 overflow-hidden transition-all duration-300 hover:shadow-xl">
+        <div className="px-4 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-700 dark:to-indigo-700">
+          <h3 className="text-white font-medium text-lg">Get in Touch</h3>
+          <p className="text-white/80 text-sm">We'll get back to you as soon as possible</p>
         </div>
-      )}
-      
-      <div 
-        className="ghl-form-container w-full h-full mx-auto" 
-        ref={formContainerRef} 
-        aria-live="polite"
-        aria-busy={isLoading}
-      />
+        
+        <div style={{ height: `${height}px` }} className="relative p-1">
+          {isLoading && (
+            <div 
+              id={`${iframeId}-loading`}
+              className="absolute inset-0 flex flex-col items-center justify-center bg-white dark:bg-gray-900 bg-opacity-90 dark:bg-opacity-90 z-10 backdrop-blur-sm"
+            >
+              <div className="flex items-center justify-center space-x-2 mb-3">
+                <div className="w-3 h-3 rounded-full bg-blue-500 animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                <div className="w-3 h-3 rounded-full bg-blue-500 animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                <div className="w-3 h-3 rounded-full bg-blue-500 animate-bounce" style={{ animationDelay: '300ms' }}></div>
+              </div>
+              <p className="text-gray-600 dark:text-gray-300 font-medium">Loading your form...</p>
+            </div>
+          )}
+          
+          <div 
+            className="ghl-form-container w-full h-full mx-auto" 
+            ref={formContainerRef} 
+            aria-live="polite"
+            aria-busy={isLoading}
+          />
+        </div>
+      </div>
       
       {/* Load the GHL form script */}
       <Script 
@@ -120,11 +131,13 @@ export function GHLForm({
  */
 export function ContactForm() {
   return (
-    <GHLForm
-      formId="yj7USLPw6G6KyQLC9vZx"
-      formName="Form 0"
-      height={400}
-      className="w-full"
-    />
+    <div className="max-w-2xl mx-auto my-6">
+      <GHLForm
+        formId="yj7USLPw6G6KyQLC9vZx"
+        formName="Contact Form"
+        height={480}
+        className="max-w-full"
+      />
+    </div>
   );
 }
