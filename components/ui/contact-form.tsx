@@ -45,7 +45,7 @@ export function GHLForm({
           src="https://api.zenbiz.co/widget/form/${formId}"
           style="width:100%;height:100%;border:none;border-radius:8px"
           id="${iframeId}" 
-          data-layout="{'id':'INLINE'}"
+          data-layout="{&apos;id&apos;:&apos;INLINE&apos;}"
           data-trigger-type="alwaysShow"
           data-trigger-value=""
           data-activation-type="alwaysActivated"
@@ -77,8 +77,10 @@ export function GHLForm({
       if (iframe) {
         iframe.removeEventListener('load', handleFormLoaded);
       }
-      if (formContainerRef.current) {
-        formContainerRef.current.innerHTML = '';
+      // Store a reference to formContainerRef.current to avoid the exhaustive deps warning
+      const currentFormContainer = formContainerRef.current;
+      if (currentFormContainer) {
+        currentFormContainer.innerHTML = '';
       }
     };
   }, [formId, height, iframeId, formName]);
