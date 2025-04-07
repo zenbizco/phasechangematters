@@ -29,15 +29,18 @@ export function GHLForm({
   const iframeId = `inline-${formId}`;
 
   useEffect(() => {
+    // Store a reference to the current value of formContainerRef to avoid stale closure issues
+    const currentFormContainer = formContainerRef.current;
+
     // Handle form loading state
     const handleFormLoaded = () => {
       setIsLoading(false);
     };
 
     // Setup form when component mounts
-    if (formContainerRef.current) {
+    if (currentFormContainer) {
       // Clear any existing content
-      formContainerRef.current.innerHTML = '';
+      currentFormContainer.innerHTML = '';
 
       // Create the iframe element with exact GHL configuration from the provided code
       const embedCode = `
@@ -62,7 +65,7 @@ export function GHLForm({
       `;
 
       // Insert the iframe
-      formContainerRef.current.innerHTML = embedCode;
+      currentFormContainer.innerHTML = embedCode;
 
       // Setup event listener for iframe loading
       const iframe = document.getElementById(iframeId) as HTMLIFrameElement;
@@ -77,8 +80,7 @@ export function GHLForm({
       if (iframe) {
         iframe.removeEventListener('load', handleFormLoaded);
       }
-      // Store a reference to formContainerRef.current to avoid the exhaustive deps warning
-      const currentFormContainer = formContainerRef.current;
+      // Use the stored reference to formContainerRef.current from the outer scope
       if (currentFormContainer) {
         currentFormContainer.innerHTML = '';
       }
@@ -87,12 +89,7 @@ export function GHLForm({
 
   return (
     <div className={`ghl-form-wrapper relative ${className}`}>
-      <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg border border-gray-200 dark:border-gray-800 overflow-hidden transition-all duration-300 hover:shadow-xl">
-        <div className="px-4 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-700 dark:to-indigo-700">
-          <h3 className="text-white font-medium text-lg">Get in Touch</h3>
-          <p className="text-white/80 text-sm">We&apos;ll get back to you as soon as possible</p>
-        </div>
-        
+
         <div style={{ height: `${height}px` }} className="relative p-1">
           {isLoading && (
             <div 
@@ -115,7 +112,6 @@ export function GHLForm({
             aria-busy={isLoading}
           />
         </div>
-      </div>
       
       {/* Load the GHL form script */}
       <Script 
