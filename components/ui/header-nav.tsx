@@ -64,7 +64,7 @@ export function HeaderNav() {
             <SheetTitle className="text-left">
               <div className="flex items-center gap-2 mb-6">
                 <div className="w-6 h-6 rounded-full bg-blue-600"></div>
-                <span className="font-bold">Next Phase Matters</span>
+                <span className="font-bold">Phase Change Matters</span>
               </div>
             </SheetTitle>
           </SheetHeader>

@@ -115,7 +115,7 @@ export function Footer() {
         {/* Bottom Footer Section */}
         <div className="flex flex-col md:flex-row justify-between items-center py-4">
           <div className="text-neutral-500 text-sm mb-4 md:mb-0 flex flex-col sm:flex-row items-center gap-2">
-            <p>© {currentYear} Next Phase Matters. All rights reserved.</p>
+            <p>© {currentYear} Phase Change Matters. All rights reserved.</p>
             <div className="flex items-center">
               <span className="mx-2 hidden sm:inline">|</span>
               <span>Powered by</span>
