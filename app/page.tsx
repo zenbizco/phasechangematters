@@ -15,7 +15,7 @@ export default function Home() {
       <header className="w-full py-6 px-4 sm:px-6 lg:px-8 flex justify-between items-center border-b fixed top-0 bg-white/90 dark:bg-neutral-900/90 backdrop-blur-sm z-50">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-full bg-blue-600"></div>
-          <h1 className="text-2xl font-bold">Next Phase Matters</h1>
+          <h1 className="text-2xl font-bold">Phase Change Matters</h1>
         </div>
         <HeaderNav />
       </header>
