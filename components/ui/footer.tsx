@@ -19,7 +19,7 @@ export function Footer() {
           <div className="col-span-1">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-8 h-8 rounded-full bg-blue-600"></div>
-              <span className="text-xl font-bold">Next Phase Matters</span>
+              <span className="text-xl font-bold">Phase Change Matters</span>
             </div>
             <p className="text-neutral-400 mb-4">
               Innovating sustainable temperature control solutions with BioPCM® technology.
