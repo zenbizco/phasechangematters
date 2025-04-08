@@ -134,7 +134,7 @@ export default function Home() {
           </p>
           <div className="mt-8">
             <button className="bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-md inline-block">
-              Download Technical Whitepaper
+              <a href="#quote-inquiry">Get a Quote or Inquire</a>
             </button>
           </div>
         </div>
@@ -228,10 +228,11 @@ export default function Home() {
           <CardHeader className="text-center pb-2 px-4 pt-4">
             <CardTitle className="text-xl mb-1">Request Information or Quote</CardTitle>
             <CardDescription className="text-sm">
-              Interested in BioPCM® technology for your application? Fill out the form below to get detailed information or a customized quote.
+              Interested in BioPCM technology for your application? Fill out the form below to get detailed information or a customized quote.
             </CardDescription>
           </CardHeader>
           <CardContent className="px-0 pt-0 pb-0">
+            <a id="quote-inquiry" className="hidden" aria-hidden="true"></a>
             <ContactForm />
           </CardContent>
         </Card>
