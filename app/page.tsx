@@ -5,6 +5,7 @@ import { ContactForm } from "@/components/ui/contact-form";
 import { Footer } from "@/components/ui/footer"; // Corrected import statement
 import { Hero } from "@/components/ui/animated-hero";
 import { FeatureCard } from "@/components/ui/feature-card";
+import Script from "next/script";
 
 export default function Home() {
   return (
@@ -242,6 +243,46 @@ export default function Home() {
       <div id="terms" style={{ height: '1px', overflow: 'hidden' }}></div>
 
       <Footer />
+      
+      {/* n8n Chat Widget */}
+      <div id="n8n-chat" className="fixed bottom-4 right-4 z-50" />
+      <Script id="n8n-chat-css" strategy="beforeInteractive">
+        {`
+          const link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css';
+          document.head.appendChild(link);
+        `}
+      </Script>
+      <Script id="n8n-chat-widget" type="module" strategy="afterInteractive">
+        {`
+          import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+          createChat({
+            webhookUrl: 'https://n8n.zenbiz.ai/webhook/dec328cc-f47e-4727-b1c5-7370be86a958/chat',
+            webhookConfig: { method: 'POST', headers: {} },
+            target: '#n8n-chat',
+            mode: 'window',
+            chatInputKey: 'chatInput',
+            chatSessionKey: 'sessionId',
+            metadata: {},
+            showWelcomeScreen: false,
+            defaultLanguage: 'en',
+            initialMessages: [
+              'Hi there! 👋',
+              'My name is Ashley, your PCM ambassdor. How may I help you today?'
+            ],
+            i18n: {
+              en: {
+                title: 'Hi there! 👋',
+                subtitle: "Start a chat. We're here to help you 24/7.",
+                footer: '',
+                getStarted: 'New Conversation',
+                inputPlaceholder: 'Type your question..',
+              },
+            },
+          });
+        `}
+      </Script>
     </div>
   );
 }
