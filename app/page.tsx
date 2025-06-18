@@ -5,7 +5,7 @@ import { ContactForm } from "@/components/ui/contact-form";
 import { Footer } from "@/components/ui/footer"; // Corrected import statement
 import { Hero } from "@/components/ui/animated-hero";
 import { FeatureCard } from "@/components/ui/feature-card";
-import Script from "next/script";
+// import Script from "next/script";
 
 export default function Home() {
   return (
