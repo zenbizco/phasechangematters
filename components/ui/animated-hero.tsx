@@ -67,12 +67,21 @@ function Hero() {
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-3">
-            <Button size="lg" className="gap-4" variant="outline">
+            <a
+              href="/pcm-whitepaper.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button size="lg" className="gap-4" variant="outline">
+                Technical Specs <InfoIcon className="w-4 h-4" />
+              </Button>
+            </a>
+            {/* <Button size="lg" className="gap-4" variant="outline">
               Technical Specs <InfoIcon className="w-4 h-4" />
-            </Button>
-            <Button size="lg" className="gap-4 bg-blue-600 hover:bg-blue-700">
+            </Button> */}
+            {/* <Button size="lg" className="gap-4 bg-blue-600 hover:bg-blue-700">
               Get a Quote <Users className="w-4 h-4" />
-            </Button>
+            </Button> */}
           </div>
         </div>
       </div>
